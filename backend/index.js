@@ -1,8 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 // Route 
@@ -16,7 +18,7 @@ if(process.env.NODE_ENV === 'production'){
     });
 }
 
-const uri = process.env.mongodb || 'mongodb://localhost:27017/users'
+const uri = process.env.mongodb || 'mongodb://localhost:27017/user'
 
 // MogoDB
 mongoose.connect(uri,{
@@ -28,7 +30,7 @@ mongoose.connect(uri,{
         process.exit(1);
     }
     else{
-        console.log("Connected Sucessfully")
+        console.log("Successfully connected to the database")
     }
 })
 

@@ -17,3 +17,5 @@ const UserTableRow = (props) =>{
         </tr>
     )
 }
+
+export default UserTableRow;

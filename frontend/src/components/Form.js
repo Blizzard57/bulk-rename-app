@@ -2,9 +2,9 @@ import React from 'react';
 import Input from './Input'
 
 const Form = (props)=>{
-    retrurn(
+    return(
         <form onSubmit={props.handler}>
-            <h3>{props.isEditForm ? "Editing User" : "Add Employee"}</h3>
+            <h3>{props.isEditForm ? "Editing User" : "Regiser"}</h3>
             <div className="form-group">
                 <Input name="firstName"
                        placeholder="Enter First Name"
@@ -17,8 +17,8 @@ const Form = (props)=>{
                        handleChange={props.handleChange}
                        value={props.user.lastName} />
                 <Input name="job"
-                       placeholder="Enter Job"
-                       labelName="Job: "
+                       placeholder="Type of User"
+                       labelName="User Type: "
                        handleChange={props.handleChange}
                        value={props.user.job} />
             </div>

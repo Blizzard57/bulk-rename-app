@@ -12,7 +12,7 @@ const renderMessageClassName = (props)=>{
 
 const Message = (props) => {
     return(
-        <div className="renderMessageClassName(props)" role="alert">
+        <div className={renderMessageClassName(props)} role="alert">
             {props.message.msgBody}
         </div>
     )

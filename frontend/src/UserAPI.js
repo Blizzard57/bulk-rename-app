@@ -1,18 +1,20 @@
 export default{
-    getUsers: ()=>{
-        return fetch('/user')
+    getUser: ()=>{
+        return fetch('http://localhost:5000/user',{mode:'cors'})
         .then(res=> res.json())
         .then(data=> data);
     },
     deleteUser: (_id)=>{
-        return fetch(`/user/${_id}`,
-                    {method : 'delete'})
+        return fetch(`http://localhost:5000/user/${_id}`,
+                    {mode:'cors',
+                    method : 'delete'})
                     .then(res => res.json())
                     .then(data => data);
     },
     updateUser: (user)=>{
-        return fetch(`/user/${employee._id}`,
-                    {method: 'put',
+        return fetch(`http://localhost:5000/user/${user._id}`,
+                    {mode:'cors',
+                    method: 'put',
                      body: JSON.stringify(user),
                     headers:{
                         "Content-Type": "application/json"
@@ -20,8 +22,9 @@ export default{
                        .then(data => data);
     },
     createUser: (user)=>{
-        return fetch(`/user/`,
-                    {method: 'post',
+        return fetch(`http://localhost:5000/user`,
+                    {mode:'cors',
+                    method: 'post',
                      body: JSON.stringify(user),
                     headers:{
                         "Content-Type": "application/json"

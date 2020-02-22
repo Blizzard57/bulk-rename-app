@@ -3,7 +3,7 @@ import React from 'react';
 const Input = (props)=>{
     return(
         <>
-            <label htmlFor={props.name}>{props.labelName}>Email address</label>
+            <label htmlFor={props.name}>{props.labelName}</label>
             <input type="text" 
                    className="form-control" 
                    placeholder={props.placeholder} 

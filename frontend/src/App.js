@@ -3,20 +3,24 @@ import UserTable from './components/UserTable';
 import Form from './components/Form';
 import Message from './components/Message';
 import UserAPI from './UserAPI';
+import Navbar from './components/Navbar';
+
+const location = 'Home';
 
 class App extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            users : [],
-            isEditForm : false,
-            user : {
-                firstName : "",
-                lastName : "",
-                job : ""
+            users: [],
+            isEditForm: false,
+            user: {
+                firstName: "",
+                lastName: "",
+                job: ""
             },
-            message : ""
-        },
+            message: ""
+        };
+        
         this.deleteHandler = this.deleteHandler.bind(this);
         this.addHandler = this.addHandler.bind(this);
         this.updateHandler = this.updateHandler.bind(this);
@@ -25,7 +29,9 @@ class App extends React.Component{
     }
 
     componentDidMount(){
-        UserAPI.getUsers().then(data=>{this.setState({users : data.response})});
+        UserAPI.getUser().then(data=>{
+            console.log(data);
+            this.setState({users : data})});
     }
 
     resetForm(){
@@ -52,14 +58,15 @@ class App extends React.Component{
     }
 
     async deleteHandler(id){
-        const deleteData = await UserAPI.deleteUser(id);
+        {/*console.log(id.user._id);*/}
+        const deleteData = await UserAPI.deleteUser(id.user._id);
         const message = deleteData.message;
         if(message.msgError){
             this.setState({message});
         }
         else{
-            const data = await UserAPI.getUsers();
-            this.setState({message,users : data.response})
+            const data = await UserAPI.getUser();
+            this.setState({message,users : data})
         }
     }
 
@@ -71,8 +78,8 @@ class App extends React.Component{
             this.setState({message});
         }
         else{
-            const data = await UserAPI.getUsers();
-            this.setState({message,users : data.response})
+            const data = await UserAPI.getUser();
+            this.setState({message,users : data})
         }
         this.setState({isEditForm:false});
         this.resetForm();
@@ -86,13 +93,15 @@ class App extends React.Component{
             this.setState({message});
         }
         else{
-            const data = await UserAPI.getUsers();
-            this.setState({message,users : data.response})
+            const data = await UserAPI.getUser();
+            this.setState({message,users : data})
         }
         this.resetForm();
     }
 
     renderUserTable(){
+        {/*console.log("Here First")
+    console.log(this.state.users)*/}
         if(this.state.users.length > 0){
             return(
                 <UserTable users = {this.state.users} 
@@ -112,6 +121,12 @@ class App extends React.Component{
         );
     }
 
+    renderNavbar(){
+        return(
+            <Navbar/>
+        );
+    }
+
     renderMessage(){
         if(this.state.message === "")
             return null;
@@ -121,16 +136,21 @@ class App extends React.Component{
     }
 
     render(){
-        return(
-            <div className="row">
-                <div className="col"></div>
-                <div className="col-10">
-                    {this.renderUserTable()}
-                    {this.renderForm()}
-                    {this.renderMessage()}
+        if(location==='Home'){
+            return(
+                <div className="row">
+                    <div className="col"></div>
+                    <div className="col-10">
+                        {this.renderNavbar()}
+                        {this.renderUserTable()}
+                        {this.renderForm()}
+                        {this.renderMessage()}
+                    </div>
+                    <div className="col"></div>
                 </div>
-                <div className="col"></div>
-            </div>
-        )
+            )
+        }
     }
 }
+
+export default App;

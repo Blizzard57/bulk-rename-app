@@ -5,7 +5,7 @@ const User = require("../model/User");
 // CRUD, Create Read Update Delete ( Following that model)
 
 //Read
-userRouter.get('/',(res,req)=>{
+userRouter.get('/',(req,res)=>{
     User.find({},(err,response)=>{
         if(err)
             res.status(500).json({message:{

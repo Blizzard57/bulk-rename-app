@@ -8,16 +8,17 @@
     "start": "node index",
     "frontend": "cd ../frontend && npm start",
     "backend": "nodemon index",
-    "dev": "concurrently \" npm run fronted\" \" npm run backend\"",
+    "dev": "concurrently \" npm run frontend\" \" npm run backend\"",
     "frontend-install": "cd ../frontend && npm install",
     "backend-install": "npm install",
     "install-all": "concurrently \"npm run frontend-install\" \"npm run backend-install\"",
-    "heroku-postbuild": "cd ../frontend && npm install && npm run build" 
+    "heroku-postbuild": "cd ../frontend && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.9.1",
     "nodemon": "^2.0.2"
