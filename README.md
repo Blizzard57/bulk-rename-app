@@ -1,4 +1,4 @@
-# MernStackApp
+# MERN Stack App
 
 Application based on MERN Stack
 
